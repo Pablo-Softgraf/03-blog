@@ -44,12 +44,12 @@ export default function Post({ post }: PostProps) {
             <p>{post.data.author}</p>
             <div>
               <span>{post.first_publication_date}</span>
-              {post.data.content.map(item =>
+              {post.data.content.map(content =>
                 <div>
-                  <h3>{item.heading}</h3>
+                  <h3>{content.heading}</h3>
                   <ul>
-                    {item.body.map(option =>
-                      <li>{option.text}</li>
+                    {content.body.map(body =>
+                      <li>{body.text}</li>
                     )}
                   </ul>
                 </div>
@@ -100,15 +100,6 @@ export const getStaticProps: GetStaticProps = async context => {
       },
       author: response.data.author,
       content: response.data.content,
-      /*
-      content: response.data.content.map(item => {
-        return {
-          heading: item.heading,
-          body: item.body,
-        };
-      }),
-      */
-      //content: response.data.content,
     }
   }
   console.log(post);
