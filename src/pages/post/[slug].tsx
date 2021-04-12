@@ -45,7 +45,14 @@ export default function Post({ post }: PostProps) {
             <div>
               <span>{post.first_publication_date}</span>
               {post.data.content.map(item =>
-                <p>{item.heading}</p>
+                <div>
+                  <h3>{item.heading}</h3>
+                  <ul>
+                    {item.body.map(option =>
+                      <li>{option.text}</li>
+                    )}
+                  </ul>
+                </div>
               )
               }
             </div>
