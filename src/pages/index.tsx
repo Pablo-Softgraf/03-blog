@@ -1,9 +1,14 @@
-import { GetStaticProps } from 'next';
 
+import { GetStaticProps } from 'next';
 import { getPrismicClient } from '../services/prismic';
+import Prismic from '@prismicio/client';
+import { FiCalendar, FiUser } from 'react-icons/fi';
+import Head from 'next/head';
+
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
+
 
 interface Post {
   uid?: string;
@@ -24,13 +29,69 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-// export default function Home() {
-//   // TODO
-// }
+export default function Home(postsPagination: HomeProps) {
+  // TODO
+  const { posts } = postsPagination;
 
-// export const getStaticProps = async () => {
-//   // const prismic = getPrismicClient();
-//   // const postsResponse = await prismic.query(TODO);
+  return (
+    <>
+      <Head>
+        <title>Inicio | sg.news</title>
+      </Head>
 
-//   // TODO
-// };
+      <main className={styles.container}>
+        <img src="spacetravelling.svg" alt="logo" />
+
+        {posts.map(post => (
+          <div className={styles.posts} key={post.uid}>
+            <a href={`post/${post.uid}`}>
+              <strong>{post.data.title}</strong>
+              <p>{post.data.subtitle}</p>
+              <div>
+                <FiCalendar />
+                <span>{post.first_publication_date}</span>
+                <FiUser />
+                <span>{post.data.author}</span>
+              </div>
+            </a>
+          </div>
+        ))}
+
+      </main>
+    </>
+  )
+
+
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient();
+  const postsResponse = await prismic.query([
+    Prismic.predicates.at('document.type', 'post')
+  ], {
+    fetch: ['post.title', 'post.subtitle', 'post.author'],
+    pageSize: 20,
+  })
+
+  //console.log(JSON.stringify(postsResponse));
+
+  const posts = postsResponse.results.map(post => {
+    return {
+      uid: post.uid,
+      first_publication_date: new Date(post.first_publication_date).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      }),
+      data: {
+        title: post.data.title,
+        subtitle: post.data.subtitle,
+        author: post.data.author,
+      }
+    }
+  })
+
+  return {
+    props: { posts }
+  }
+};
