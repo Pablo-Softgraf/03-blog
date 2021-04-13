@@ -29,9 +29,12 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-export default function Home(postsPagination: HomeProps) {
-  // TODO
-  const { posts } = postsPagination;
+export default function Home(props: PostPagination) {
+  const { next_page, results } = props;
+
+  //console.log(results);
+  //console.log(next_page);
+  const posts = results;
 
   return (
     <>
@@ -70,12 +73,11 @@ export const getStaticProps: GetStaticProps = async () => {
     Prismic.predicates.at('document.type', 'post')
   ], {
     fetch: ['post.title', 'post.subtitle', 'post.author'],
-    pageSize: 20,
+    pageSize: 2,
   })
-
   //console.log(JSON.stringify(postsResponse));
 
-  const posts = postsResponse.results.map(post => {
+  const results = postsResponse.results.map(post => {
     return {
       uid: post.uid,
       first_publication_date: new Date(post.first_publication_date).toLocaleDateString('pt-BR', {
@@ -92,6 +94,6 @@ export const getStaticProps: GetStaticProps = async () => {
   })
 
   return {
-    props: { posts }
+    props: { results }
   }
 };

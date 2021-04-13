@@ -1,1 +1,106 @@
-// TODO
+.container{
+    width: 1440px;
+    height: 1068px;
+}
+
+.post{
+    width: 1440px;
+    height: 2773px;
+    margin:5rem auto 0;
+    
+    /* Background */
+    background: #1A1D23;
+    img{
+        width: 1440px;
+        height: 400px;
+        padding:2.5rem 0;
+    }
+
+    h1{
+        width: 700px;
+        height: 58px;
+        //left: 370px;
+        //top: 585px;
+        margin:5rem auto 0;
+
+        font-family: Inter;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 58px;
+        /* identical to box height */
+        text-align: justify;
+
+        letter-spacing: -0.5px;
+
+        /* Heading */
+
+        color: #F8F8F8;
+    }
+
+    div{
+        width: 721px;
+        margin:1rem auto 0;
+
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16.94px;
+        /* or 50px */
+        text-align: justify;
+
+        color: #F8F8F8;    
+    }
+}
+
+.content{
+    display: block;
+    /* Heading */
+    div{
+        width: 700px;
+        height: 1942px;
+        left: 370px;
+        top: 751px;
+
+        font-family: Inter;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 140%;
+        /* or 50px */
+
+        text-align: justify;
+
+        /* Heading */
+
+        color: #F8F8F8;
+        h1{
+            /* Heading */
+            color: #F8F8F8;
+            font-family: Inter;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 36px;
+            line-height: 140%;
+            /* or 50px */
+        }
+        div{
+        padding:2.5rem 0;
+        }
+        li{
+            padding:0.5rem 0;
+            font-family: Inter;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 140%;
+            /* or 50px */
+            
+            text-align: justify;
+            color: #F8F8F8;
+
+        }
+    }
+}
+

@@ -4,9 +4,11 @@ import React from 'react';
 import Header from '../../components/Header';
 import { RichText } from 'prismic-dom';
 import { getPrismicClient } from '../../services/prismic';
+import { FiUser, FiCalendar, FiWatch } from 'react-icons/fi'
 
 import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
+import { FILE } from 'node:dns';
 
 interface Post {
   uid: string | null;
@@ -37,30 +39,32 @@ export default function Post({ post }: PostProps) {
       <Head>
         <title>sgnews.posts</title>
       </Head>
-      <main>
-        <div>
-          <a href="#">
-            <strong>{post.data.title}</strong>
-            <p>{post.data.author}</p>
-            <div>
-              <span>{post.first_publication_date}</span>
-              {post.data.content.map(content =>
-                <div>
-                  <h3>{content.heading}</h3>
-                  <ul>
-                    {content.body.map(body =>
-                      <li>{body.text}</li>
-                    )}
-                  </ul>
-                </div>
-              )
-              }
-            </div>
-            <div>
-              <img src={post.data.banner.url} alt="banner" />
-            </div>
-          </a>
-        </div>
+      <main className={styles.container}>
+        <article className={styles.post}>
+          <img src={post.data.banner.url} alt="logo" />
+          <h1>{post.data.title}</h1>
+          <div>
+            <FiCalendar />
+            <span>{post.data.author}</span>
+            <FiUser />
+            <span>{post.first_publication_date}</span>
+            <FiWatch />
+            <span>4 mins</span>
+          </div>
+          <div className={styles.content}>
+            {post.data.content.map(content =>
+              <div>
+                <h1>{content.heading}</h1>
+                <ul>
+                  {content.body.map(body =>
+                    <li>{body.text}</li>
+                  )}
+                </ul>
+              </div>
+            )
+            }
+          </div>
+        </article>
       </main>
     </>
   )
