@@ -78,7 +78,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   //   // TODO
   return ({
     paths: [],
-    fallback: "blocking",
+    fallback: true,
   })
 };
 
@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps = async context => {
     data: {
       title: response.data.title,
       banner: {
-        url: response.data.banner.url,
+        url: RichText.asText(response.data.banner.url),
       },
       author: response.data.author,
       content: response.data.content,
