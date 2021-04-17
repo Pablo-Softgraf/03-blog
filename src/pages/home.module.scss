@@ -8,29 +8,26 @@
     left: 372px;
     top: 79.55px;
     }
+    div{
+      button{
+          width: 176px;
+          height: 22px;
+          margin: 3rem 0 auto;
     
-    button{
-      width: 176px;
-      height: 22px;
-    //  margin: 3rem 0 auto;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 22px;
+          /* identical to box height */
+          text-align: justify;
           
-      font-family: Inter;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 22px;
-      /* identical to box height */
-      text-align: justify;
-      
-      /* Highlight */
-      
-      color: #FF57B2;
-      border: none;
+          /* Highlight */
+          
+          color: #FF57B2;
+          border: none;
+      }
     }
-    
-
-
-
 }
 
 .posts {
@@ -39,9 +36,15 @@
     height: 108px;
     left: 370px;
     top: 170px;
+
+    div{
+      &+div{
+        margin:1rem 0 auto;
+      }
+    }
     
     a {
-      
+
       strong{
         font-family: Inter;
         font-style: normal;
@@ -95,4 +98,7 @@
       }
     }
 }
+
+
+
 
